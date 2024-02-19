@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "astrospec"
+version = "2024.02.19"
+dependencies = [
+]
+requires-python = ">=3.9"
+authors = [
+  {name = "Rongmon Bordoloi", email = "rbordoloi@ncsu.edu"},
+]
+maintainers = [
+  {name = "Rongmon Bordoloi", email = "rbordoloi@ncsu.edu"},
+  {name = "Bob Seaton", email = "rwseaton@ncsu.edu"}
+]
+description = "Astrospec is a collection of 1d- and 2d-spectral analysis tools for astrophysical research."
+readme = "README.md"
+license = {file = "LICENSE.txt"}
+keywords = ["astrophysics", "spectroscopy", "data analysis", "astronomy", "science"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python"
+]
+
+
+[project.urls]
+Homepage = "https://example.com"
+Documentation = "https://readthedocs.org"
+Repository = "https://github.com/me/spam.git"
+"Bug Tracker" = "https://github.com/me/spam/issues"
+Changelog = "https://github.com/me/spam/blob/master/CHANGELOG.md"
+
+
+

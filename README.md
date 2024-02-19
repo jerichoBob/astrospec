@@ -1,2 +1,3 @@
-# astrospec
-A collection of 1d and 2d spectrum tools for astrophysics research
+# Astrospec
+
+Astrospec is a collection of 1d- and 2d-spectral analysis tools for astrophysical research.
