@@ -51,42 +51,41 @@ def compute_EW(lam,flx,wrest,lmts,flx_err,**kwargs):
         sat_limit=kwargs['sat_limit']
     else:
         sat_limit=0.10 #  Limit for saturation (COS specific). Set to same as fluxcut for now. WHAT SHOULD THIS BE???
-    vel = (lam-wrest*(1.0 + zabs))*spl/(wrest*(1.0 + zabs));
-    lambda_r=lam/(1.+zabs);
+    vel = (lam-wrest*(1.0 + zabs))*spl/(wrest*(1.0 + zabs))
+    lambda_r=lam/(1.+zabs)
 
-    
 
     norm=defnorm
 
-    norm_flx=flx/norm;
-    flx_err=flx_err/norm;
-    sq=np.isnan(norm_flx);
+    norm_flx=flx/norm
+    flx_err=flx_err/norm
+    sq=np.isnan(norm_flx)
     tmp_flx=flx_err[sq]
     norm_flx[sq]=tmp_flx
     #clip the spectrum. If the flux is less than 0+N*sigma, then we're saturated. Clip the flux array(to avoid inifinite optical depth) and set the saturated flag
-    q=np.where(norm_flx<=sat_limit);
+    q=np.where(norm_flx<=sat_limit)
     tmp_flx=flx_err[q]
     norm_flx[q]=tmp_flx
-    q=np.where(norm_flx<=0.);
+    q=np.where(norm_flx<=0.)
     tmp_flx=flx_err[q]+0.01
-    norm_flx[q]=tmp_flx;
+    norm_flx[q]=tmp_flx
 
 
-    del_lam_j=np.diff(lambda_r);
-    del_lam_j=np.append([del_lam_j[0]],del_lam_j);
+    del_lam_j=np.diff(lambda_r)
+    del_lam_j=np.append([del_lam_j[0]],del_lam_j)
 
 
-    pix = np.where( (vel >= lmts[0]) & (vel <= lmts[1]));
+    pix = np.where( (vel >= lmts[0]) & (vel <= lmts[1]))
     Dj=1.-norm_flx
 
     # Equivalent Width Per Pixel
-    ew=del_lam_j[pix]*Dj[pix];
+    ew=del_lam_j[pix]*Dj[pix]
 
 
-    sig_dj_sq=(flx_err)**2.;
-    err_ew=del_lam_j[pix]*np.sqrt(sig_dj_sq[pix]);
-    err_ew_tot=np.sqrt(np.sum(err_ew**2.));
-    ew_tot=np.sum(ew);
+    sig_dj_sq=(flx_err)**2.
+    err_ew=del_lam_j[pix]*np.sqrt(sig_dj_sq[pix])
+    err_ew_tot=np.sqrt(np.sum(err_ew**2.))
+    ew_tot=np.sum(ew)
 
     #compute the velocity centroid of ew weighted velcity.
     ew50=np.cumsum(ew)/np.max(np.cumsum(ew))
@@ -108,18 +107,18 @@ def compute_EW(lam,flx,wrest,lmts,flx_err,**kwargs):
     if 'f0' in kwargs:
         f0=kwargs['f0']
         #compute apparent optical depth
-        Tau_a =np.log(1./norm_flx);
+        Tau_a =np.log(1./norm_flx)
         
     
         # REMEMBER WE ARE SWITCHING TO VELOCITY HERE
-        del_vel_j=np.diff(vel);
+        del_vel_j=np.diff(vel)
         del_vel_j=np.append([del_vel_j[0]],del_vel_j)
         
         # Column density per pixel as a function of velocity
-        nv = Tau_a/((2.654e-15)*f0*lambda_r);# in units cm^-2 / (km s^-1), SS91 
+        nv = Tau_a/((2.654e-15)*f0*lambda_r)# in units cm^-2 / (km s^-1), SS91 
         n = nv* del_vel_j# column density per bin obtained by multiplying differential Nv by bin width 
-        tauerr = flx_err/norm_flx;
-        nerr = (tauerr/((2.654e-15)*f0*lambda_r))*del_vel_j; 
+        tauerr = flx_err/norm_flx
+        nerr = (tauerr/((2.654e-15)*f0*lambda_r))*del_vel_j 
         col = np.sum(n[pix]);
         colerr = np.sum((nerr[pix])**2.)**0.5; 
         print('Direct N = ' + np.str('%.3f' % np.log10(col))  +' +/- ' + np.str('%.3f' % (np.log10(col+colerr) - np.log10(col))) + ' cm^-2')
