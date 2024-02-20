@@ -27,7 +27,7 @@ classifiers = [
 
 [project.urls]
 Homepage = "https://github.com/jerichoBob/astrospec/wiki"
-Documentation = "https://readthedocs.org"
+Documentation = "https://astrospec.readthedocs.org"
 Repository = "https://github.com/jerichoBob/astrospec"
 "Bug Tracker" = "https://github.com/jerichoBob/astrospec/issues"
 

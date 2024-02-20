@@ -1,0 +1,14 @@
+# install the build and deploy tools
+python3 -m venv .venv
+source .venv/bin/activate
+
+pip install --upgrade pip build twine sphinx
+
+# edit, commit and push the changes to github
+git add *
+git commit -m "initial project setup"
+git push
+
+# build and deploy the package to testpypi
+python3 -m build
+python3 -m twine upload --repository testpypi dist/*

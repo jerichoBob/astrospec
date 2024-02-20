@@ -6,7 +6,15 @@
 Welcome to AstroSpec's documentation!
 =====================================
 
+**AstroSpec** is a Python library for the analysis of circumgalactic medium observations.
+
+.. note::
+
+   This project is under active development.
+
 .. toctree::
+   usage
+   api
    :maxdepth: 2
    :caption: Contents:
 
