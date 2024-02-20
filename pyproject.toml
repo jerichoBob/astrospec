@@ -26,11 +26,10 @@ classifiers = [
 
 
 [project.urls]
-Homepage = "https://example.com"
+Homepage = "https://github.com/jerichoBob/astrospec/wiki"
 Documentation = "https://readthedocs.org"
-Repository = "https://github.com/me/spam.git"
-"Bug Tracker" = "https://github.com/me/spam/issues"
-Changelog = "https://github.com/me/spam/blob/master/CHANGELOG.md"
+Repository = "https://github.com/jerichoBob/astrospec"
+"Bug Tracker" = "https://github.com/jerichoBob/astrospec/issues"
 
 
 
